@@ -1,5 +1,6 @@
 using AutoMapper;
 using Grocery.Services.ProductAPI.DbContexts;
+using Grocery.Services.ProductAPI.Reponsitory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,7 @@ namespace Grocery.Services.ProductAPI
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IProductRepository, ProductResponsitory>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
